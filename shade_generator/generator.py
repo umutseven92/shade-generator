@@ -5,9 +5,13 @@ Color = tuple[int, int, int, int]
 
 
 @click.command()
-@click.option('--start-color', required=True, type=(int, int, int, int), help='First color.')
-@click.option('--end-color', required=True, type=(int, int, int, int), help='Last color.')
-@click.option('--amount', required=True, type=int, help='Number of shades to generate.')
+@click.option(
+    "--start-color", required=True, type=(int, int, int, int), help="First color."
+)
+@click.option(
+    "--end-color", required=True, type=(int, int, int, int), help="Last color."
+)
+@click.option("--amount", required=True, type=int, help="Number of shades to generate.")
 def generate(start_color: Color, end_color: Color, amount: int):
     shades = portion_colors(start_color, end_color, amount)
 
@@ -23,10 +27,10 @@ def generate(start_color: Color, end_color: Color, amount: int):
 
 def print_color(color: Color, num: int):
     click.echo(f"Color #{num} -> ", nl=False)
-    click.secho(f"r: {color[0]} ", fg="red", nl=False)
-    click.secho(f"g: {color[1]} ", fg="green", nl=False)
-    click.secho(f"b: {color[2]} ", fg="blue", nl=False)
-    click.secho(f"a: {color[3]}")
+    click.secho(f"r: {color[0]}\t", fg="red", nl=False)
+    click.secho(f"g: {color[1]}\t", fg="green", nl=False)
+    click.secho(f"b: {color[2]}\t", fg="blue", nl=False)
+    click.secho(f"a: {color[3]}\thex: {color_to_hex(color)}")
 
 
 def portion_colors(begin_color: Color, end_color: Color, amount: int) -> list[Color]:
@@ -46,3 +50,7 @@ def portion(first: int, second: int, amount: int) -> list[int]:
     values.reverse()
 
     return values
+
+
+def color_to_hex(color: Color) -> str:
+    return "#{:02x}{:02x}{:02x}".format(*color)
