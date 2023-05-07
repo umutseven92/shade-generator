@@ -2,6 +2,19 @@
 
 Very simple script to generate colors between two colors. Useful for shading and color easing.
 
+## Requirements
+
+* [Poetry](https://python-poetry.org/docs/#installation)
+
+## Installation
+
+```bash
+git clone https://github.com/umutseven92/shade-generator
+cd shade-generator
+poetry install
+
+```
+
 ## Example Usage
 
 To generate two colors between fully opaque red and semi-transparent green:
